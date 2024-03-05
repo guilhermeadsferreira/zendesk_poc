@@ -82,6 +82,7 @@ function initZendesk() {
     var params = getUrlParams();
     var conversationFields = translateParamsToConversationFields(params);
     if (conversationFields.length) {
+      console.log({ conversationFields });
       zE("messenger:set", "conversationFields", conversationFields);
     }
   }, 3000);

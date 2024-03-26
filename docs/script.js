@@ -65,13 +65,13 @@ function getUrlParams() {
 
 function removeHideButton() {
   var iframes = document.querySelectorAll("iframe");
-  let launcherIframe;
   iframes.forEach((frame) => {
-    if (frame.contentWindow.document.getElementsByTagName("title")) {
-      launcherIframe = frame;
-    }
+    var iframeZendeskDocument = frame.contentDocument;
+    var iframeZendeskButtons = iframeZendeskDocument.querySelector(
+      "[data-garden-id='buttons.icon_button']"
+    );
+    iframeZendeskButtons?.remove();
   });
-  launcherIframe.remove();
 }
 
 function initZendesk() {

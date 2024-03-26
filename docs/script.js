@@ -19,45 +19,45 @@ function getUrlParams() {
 
   //Device Info
   var deviceModel = urlParams.get("device_model");
-  //   var appVersion = urlParams.get("app_version");
-  //   var deviceLocation = urlParams.get("device_location");
-  //   var source = urlParams.get("source");
-  //   var deviceId = urlParams.get("device_id");
+  var appVersion = urlParams.get("app_version");
+  var deviceLocation = urlParams.get("device_location");
+  var source = urlParams.get("source");
+  var deviceId = urlParams.get("device_id");
 
   //User Info Optional
-  //   var accountId = urlParams.get("accound_id");
-  //   var accountName = urlParams.get("account_name");
-  //   var accountNumber = urlParams.get("account_number");
-  //   var membershipId = urlParams.get("membership_id");
+  var accountId = urlParams.get("accound_id");
+  var accountName = urlParams.get("account_name");
+  var accountNumber = urlParams.get("account_number");
+  var membershipId = urlParams.get("membership_id");
 
   //User Info Mandatory
-  //   var userUsername = urlParams.get("user_username");
-  //   var userEmail = urlParams.get("user_email");
-  //   var userDocument = urlParams.get("user_document");
-  //   var userId = urlParams.get("user_id");
-  //   var userPhone = urlParams.get("user_phone");
+  var userUsername = urlParams.get("user_username");
+  var userEmail = urlParams.get("user_email");
+  var userDocument = urlParams.get("user_document");
+  var userId = urlParams.get("user_id");
+  var userPhone = urlParams.get("user_phone");
 
   //Extra Info
-  //   var errorMessage = urlParams.get("error_message");
-  //   var currentPage = urlParams.get("current_page");
+  var errorMessage = urlParams.get("error_message");
+  var currentPage = urlParams.get("current_page");
 
   var obj = {
     deviceModel,
-    // appVersion,
-    // deviceLocation,
-    // source,
-    // deviceId,
-    // accountId,
-    // accountName,
-    // accountNumber,
-    // membershipId,
-    // userUsername,
-    // userEmail,
-    // userDocument,
-    // userId,
-    // userPhone,
-    // errorMessage,
-    // currentPage,
+    appVersion,
+    deviceLocation,
+    source,
+    deviceId,
+    accountId,
+    accountName,
+    accountNumber,
+    membershipId,
+    userUsername,
+    userEmail,
+    userDocument,
+    userId,
+    userPhone,
+    errorMessage,
+    currentPage,
   };
 
   return obj;
@@ -65,12 +65,13 @@ function getUrlParams() {
 
 function removeHideButton() {
   var iframes = document.querySelectorAll("iframe");
-  var iframeZendesk = iframes[1];
-  var iframeZendeskDocument = iframeZendesk.contentDocument;
-  var iframeZendeskButtons = iframeZendeskDocument.querySelector(
-    "[data-garden-id='buttons.icon_button']"
-  );
-  iframeZendeskButtons?.remove();
+  let launcherIframe;
+  iframes.forEach((frame) => {
+    if (frame.contentWindow.document.getElementsByTagName("title")) {
+      launcherIframe = frame;
+    }
+  });
+  launcherIframe.remove();
 }
 
 function initZendesk() {

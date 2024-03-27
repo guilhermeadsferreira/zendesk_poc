@@ -1,5 +1,20 @@
 var conversationFieldsIds = {
   deviceModel: "24313436468116",
+  appVersion: "24989792837908",
+  deviceLocation: "24989972732052",
+  source: "24990030645396",
+  deviceId: "24990004588692",
+  accountId: "24990005708820",
+  accountName: "24990389348500",
+  accountNumber: "24990358095636",
+  membershipId: "24990381349908",
+  userUsername: "24990427223444",
+  userEmail: "24990396730900",
+  userDocument: "24990398984980",
+  userId: "24990400210964",
+  userPhone: "24990417960852",
+  errorMessage: "24990464514324",
+  currentPage: "24990439188244",
 };
 
 function translateParamsToConversationFields(obj) {

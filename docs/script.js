@@ -82,19 +82,17 @@ function removeHideButton() {
   var iframes = document.querySelectorAll("iframe");
   iframes.forEach((frame, index) => {
     var iframeZendeskDocument = frame.contentDocument;
-    var iframeZendeskButtons = iframeZendeskDocument.querySelector(
-      "section div:nth-child(2)"
-    );
-    alert(`${iframes.length} - ${index} - ${iframeZendeskButtons}`);
+    var iframeZendeskButtons = iframeZendeskDocument.querySelector("section");
+    // alert(`${iframes.length} - ${index} - ${iframeZendeskButtons}`);
     iframeZendeskButtons?.remove();
   });
 }
 
 function initZendesk() {
-  document.body.style.display = "none";
+  document.body.style.opacity = 0;
   zE("messenger", "open");
   setTimeout(() => {
-    document.body.style.display = "block";
+    document.body.style.opacity = 1;
     removeHideButton();
     var params = getUrlParams();
     var conversationFields = translateParamsToConversationFields(params);

@@ -83,7 +83,7 @@ function removeHideButton() {
   iframes.forEach((frame) => {
     var iframeZendeskDocument = frame.contentDocument;
     var iframeZendeskButtons = iframeZendeskDocument.querySelector(
-      "[data-garden-id='buttons.icon_button']"
+      "section div:nth-child(2)"
     );
     iframeZendeskButtons?.remove();
   });

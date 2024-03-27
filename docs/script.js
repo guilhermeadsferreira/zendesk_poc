@@ -80,11 +80,12 @@ function getUrlParams() {
 
 function removeHideButton() {
   var iframes = document.querySelectorAll("iframe");
-  iframes.forEach((frame) => {
+  iframes.forEach((frame, index) => {
     var iframeZendeskDocument = frame.contentDocument;
     var iframeZendeskButtons = iframeZendeskDocument.querySelector(
       "section div:nth-child(2)"
     );
+    alert(`${iframes.length} - ${index} - ${iframeZendeskButtons}`);
     iframeZendeskButtons?.remove();
   });
 }

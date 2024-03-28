@@ -83,15 +83,16 @@ function removeHideButton() {
   iframes.forEach((frame) => {
     var iframeZendeskDocument = frame.contentDocument;
     var iframeZendeskButtons = iframeZendeskDocument.querySelector("section");
-    iframeZendeskButtons?.remove();
+    if (iframeZendeskButtons) {
+      document.body.style.opacity = 1;
+      iframeZendeskButtons.remove();
+    }
   });
 }
 
 function initZendesk() {
   document.body.style.opacity = 0;
   zE("messenger:on", "open", function () {
-    document.body.style.opacity = 1;
-
     let interval = setInterval(() => {
       removeHideButton();
     }, 10);

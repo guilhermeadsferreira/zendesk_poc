@@ -78,24 +78,40 @@ function getUrlParams() {
   return obj;
 }
 
-function removeHideButton() {
+function removeHideButton(interval) {
   var iframes = document.querySelectorAll("iframe");
+  let removedButton = false;
   iframes.forEach((frame) => {
     var iframeZendeskDocument = frame.contentDocument;
     var iframeZendeskButtons = iframeZendeskDocument.querySelector("section");
-    iframeZendeskButtons?.remove();
+    if (iframeZendeskButtons) {
+      iframeZendeskButtons?.remove();
+      removedButton = true;
+    }
   });
+  if (removedButton) {
+    document.body.style.opacity = 1;
+    clearInterval(interval);
+  }
+  // console.log("removeHideButton: ", removedButton);
+  // if (!removedButton) {
+  //   removeHideButton();
+  // }
 }
 
 function initZendesk() {
   document.body.style.opacity = 0;
   zE("messenger:on", "open", function () {
-    setTimeout(() => {
-      document.body.style.opacity = 1;
-      alert(window.ReactNativeWebView);
-      alert(`You have opened the messaging Web Widget`);
-      removeHideButton();
-    }, 3000);
+    // alert(window.ReactNativeWebView);
+    // alert(`You have opened the messaging Web Widget`);
+    // setInterval(() => {
+
+    // }, 100);
+    let interval = setInterval(() => {
+      console.log("removeHideButton");
+      removeHideButton(interval);
+    }, 100);
+    // document.addEventListener('change', )
   });
   zE("messenger", "open");
   //
@@ -108,11 +124,9 @@ function initZendesk() {
   // }
 }
 
-(function () {
-  window.onbeforeunload = () => {
-    zE("messenger:set", "cookies", false);
-  };
-  window.onload = () => {
-    initZendesk();
-  };
-})();
+window.onbeforeunload = () => {
+  zE("messenger:set", "cookies", false);
+};
+window.onload = () => {
+  initZendesk();
+};

@@ -90,14 +90,15 @@ function removeHideButton() {
 function initZendesk() {
   document.body.style.opacity = 0;
   zE("messenger:on", "open", function () {
+    document.body.style.opacity = 1;
+
     let interval = setInterval(() => {
       removeHideButton();
-    }, 100);
+    }, 10);
 
     setTimeout(() => {
-      document.body.style.opacity = 1;
       clearInterval(interval);
-    }, 3000);
+    }, 10000);
   });
   zE("messenger", "open");
   //

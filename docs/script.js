@@ -80,27 +80,32 @@ function getUrlParams() {
 
 function removeHideButton() {
   var iframes = document.querySelectorAll("iframe");
-  iframes.forEach((frame, index) => {
+  iframes.forEach((frame) => {
     var iframeZendeskDocument = frame.contentDocument;
     var iframeZendeskButtons = iframeZendeskDocument.querySelector("section");
-    // alert(`${iframes.length} - ${index} - ${iframeZendeskButtons}`);
     iframeZendeskButtons?.remove();
   });
 }
 
 function initZendesk() {
   document.body.style.opacity = 0;
+  zE("messenger:on", "open", function () {
+    setTimeout(() => {
+      document.body.style.opacity = 1;
+      alert(window.ReactNativeWebView);
+      alert(`You have opened the messaging Web Widget`);
+      removeHideButton();
+    }, 3000);
+  });
   zE("messenger", "open");
-  setTimeout(() => {
-    document.body.style.opacity = 1;
-    removeHideButton();
-    var params = getUrlParams();
-    var conversationFields = translateParamsToConversationFields(params);
-    if (conversationFields.length) {
-      console.log({ conversationFields });
-      zE("messenger:set", "conversationFields", conversationFields);
-    }
-  }, 3000);
+  //
+  // removeHideButton();
+  // var params = getUrlParams();
+  // var conversationFields = translateParamsToConversationFields(params);
+  // if (conversationFields.length) {
+  //   console.log({ conversationFields });
+  //   zE("messenger:set", "conversationFields", conversationFields);
+  // }
 }
 
 (function () {

@@ -91,13 +91,13 @@ function initZendesk() {
   document.body.style.opacity = 0;
   zE("messenger:on", "open", function () {
     let interval = setInterval(() => {
-      console.log("removeHideButton");
-      removeHideButton(interval);
+      removeHideButton();
     }, 100);
+
     setTimeout(() => {
       document.body.style.opacity = 1;
       clearInterval(interval);
-    }, 10000);
+    }, 3000);
   });
   zE("messenger", "open");
   //

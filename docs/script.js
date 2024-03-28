@@ -78,40 +78,26 @@ function getUrlParams() {
   return obj;
 }
 
-function removeHideButton(interval) {
+function removeHideButton() {
   var iframes = document.querySelectorAll("iframe");
-  let removedButton = false;
   iframes.forEach((frame) => {
     var iframeZendeskDocument = frame.contentDocument;
     var iframeZendeskButtons = iframeZendeskDocument.querySelector("section");
-    if (iframeZendeskButtons) {
-      iframeZendeskButtons?.remove();
-      removedButton = true;
-    }
+    iframeZendeskButtons?.remove();
   });
-  if (removedButton) {
-    document.body.style.opacity = 1;
-    clearInterval(interval);
-  }
-  // console.log("removeHideButton: ", removedButton);
-  // if (!removedButton) {
-  //   removeHideButton();
-  // }
 }
 
 function initZendesk() {
   document.body.style.opacity = 0;
   zE("messenger:on", "open", function () {
-    // alert(window.ReactNativeWebView);
-    // alert(`You have opened the messaging Web Widget`);
-    // setInterval(() => {
-
-    // }, 100);
     let interval = setInterval(() => {
       console.log("removeHideButton");
       removeHideButton(interval);
     }, 100);
-    // document.addEventListener('change', )
+    setTimeout(() => {
+      document.body.style.opacity = 1;
+      clearInterval(interval);
+    }, 10000);
   });
   zE("messenger", "open");
   //
